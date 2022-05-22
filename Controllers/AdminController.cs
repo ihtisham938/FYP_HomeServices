@@ -93,6 +93,7 @@ namespace OnlineHomeServices.Controllers
             }
             tbl.ServiceImage = file != null ? pic : tbl.ServiceImage;
             tbl.ModifiedDate = DateTime.Now;
+            tbl.Username = User.Identity.Name;
             _unitOfWork.GetRepositoryInstance<Tbl_Service>().Update(tbl);
             return RedirectToAction("Service");
         }

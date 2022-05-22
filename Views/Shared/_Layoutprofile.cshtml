@@ -1,4 +1,6 @@
 ﻿@using OnlineHomeServices.Models.Home;
+@using OnlineHomeServices;
+@using OnlineHomeServices.Models;
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/MyMainLayOut.css" rel="stylesheet" />
@@ -21,7 +22,9 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="logo">
-                    <h1><a href="#">Online <span>Home Services</span></a></h1>
+                    @*<img src="~/Images/Logo-removebg-preview.png" class="img-fluid img-thumbnail" />*@
+                    <h1><a href="../Home/Index">Online <span>Home Services</span></a></h1>
+
                     <p>Services</p>
                 </div>
             </div>
@@ -46,24 +49,22 @@
                     </div>*@
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Online <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            @if (Session["cart"] != null)
-                            {
-                                foreach (Item item in (List<Item>)Session["cart"])
-                                {
-                                    <li>
-                                        <a href="@Url.Action("RemoveFromCart", "Home", new { serviceId = item.Service.ServiceId })">@item.Service.ProductName (@item.Quantity) <i class="fa fa-times"></i></a>
-                                    </li>
-                                }
-                            }
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("Checkout", "Home")">Checkout</a></li>
-                            <li><a href="@Url.Action("Rederedcustomerprofile","Home")">Profile</a></li>
-                            @*<li><a href="@Url.Action("Rederedcustomerprofile", "Home")">Profile</a></li>*@
-                        </ul>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Online <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+
+                                <li class="divider"></li>
+                                <li><a href=" @Url.Action("Becomeseller", "Home", new { name = User.Identity.Name }) ">Become Seller</a></li>
+                                <li><a href="@Url.Action("combinedprofile", "Home")">Profile</a></li>
+                                <li><a href="@Url.Action("Logout", "Home")">Logout</a></li>
+                                @*<li><a href="@Url.Action("Rederedcustomerprofile", "Home")">Profile</a></li>*@
+
+                            </ul>
+
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -72,35 +73,68 @@
             <div class="col-md-12">
                 <div class="nav-menus">
 
-                    <ul class="nav nav-pills">
-                        <li class="active"><a style="border-radius:initial;" href="#">Home</a></li>
-                        <li><a style="border-radius:initial;" href="#">Location</a></li>
-                        <li><a style="border-radius:initial;" href="../Home/Myorders">My orders</a></li>
-                        <li><a style="border-radius:initial;" href="../Home/OrderCompleted">Completed orders</a></li>
-                        <li><a style="border-radius:initial;" href="#">About</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    <ul class="nav nav-pills" id="myTab">
+                        <li class="nav-item">
+                            <a class="nav-link" style="border-radius:initial;" href="../Home/Index">Home</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                            <li class="nav-item"> @Html.ActionLink("My Pending Order", "MyOrders", "Home")  </li>
+                            <li class="nav-item"><a class="nav-link" style="border-radius:initial;" href="../Home/CounterPending">Counter Offer</a></li>
+                            <li class="nav-item"><a class="nav-link" style="border-radius:initial;" href="../Home/OrderCompleted">Completed orders</a></li>
                         }
-                    </ul>
+                        else
+                        {
+                            <li class="nav-link">@Html.ActionLink("Login", "Login", "Home")</li>
+
+                        }
+                        </ul>
+                    </div>
                 </div>
+
             </div>
+
+
+            @RenderBody()
+            <hr />
 
         </div>
 
 
-        @RenderBody()
-        <hr />
-      
-    </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+    </body>
+
+</html>
+<script type="text/javascript">
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 
-</body>
-<script>
+    $(function () {
+        var page = sessionStorage.getItem('page');
+        var navbar = document.querySelectorAll('li');
+        if (page == null) {
+            $(navbar[0]).addClass('active');
+        } else {
+            navbar.forEach((item, index) => {
+                if (item.children[0].href == page) {
+                    $(item).addClass('active').siblings().removeClass('active');
+                }
+            });
+        }
+    })
+
+    $(document).on('click', 'ul li', function () {
+        var x = this.children[0].href;
+        sessionStorage.setItem('page', x);
+    });
+
+
+
+
+
     $(".ratingStar").hover(function () {
         $(".ratingStar").addClass("far").removeClass("fas");
         $(this).addClass("fas").removeClass("far");
@@ -112,4 +146,3 @@
         $("#ratingValue").val(starValue);
     });
 </script>
-</html>

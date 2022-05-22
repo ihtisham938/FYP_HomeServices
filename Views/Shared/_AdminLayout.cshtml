@@ -1,4 +1,4 @@
-﻿    
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +19,7 @@
     <!-- Custom styles for this template-->
     <link href="~/AdminStyle/css/sb-admin.css" rel="stylesheet">
     <link href="~/AdminStyle/css/dashboard.css" rel="stylesheet">
+
 
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
@@ -46,37 +47,13 @@
         </form>
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <span class="badge badge-danger">9+</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <span class="badge badge-danger">7</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-circle fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="">Profile</a>
-                    <a class="dropdown-item" href="#">Activity Log</a>
+                    <a class="dropdown-item" href="@Url.Action("profile","Admin")">Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" @Html.ActionLink("Logout", "Logout", "Home")></a>
                 </div>
@@ -91,19 +68,19 @@
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="../Admin/Categories">
+                    <a class="nav-link" href="@Url.Action("Categories","Admin")">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Category</span>
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../Admindata/Adminpro">
+                    <a class="nav-link" href="@Url.Action("Adminpro","Admindata")">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Un Baned users</span>
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../Admindata/BanedUsers">
+                    <a class="nav-link" href="@Url.Action("BanedUsers","Admindata")">
                         <i class="fas fa-fw fa-ban"></i>
                         <span>baned users</span>
                     </a>
@@ -114,14 +91,14 @@
 
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="../Admin/Dashboard">
+                    <a class="nav-link" href="@Url.Action("Dashboard","Admin")">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../Admin/Service">
+                    <a class="nav-link" href="@Url.Action("Service","Admin")">
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>Services</span>
                     </a>
