@@ -154,6 +154,7 @@ namespace OnlineHomeServices.Controllers
             obj1.Username = model.Username;
             obj1.password = model.password;
             obj1.location = model.location;
+            obj1.status = true;
             
             model.Profilepic = file != null ? pic : model.Profilepic;
             obj1.Profilepic = model.Profilepic;
@@ -179,33 +180,45 @@ namespace OnlineHomeServices.Controllers
             return RedirectToAction("Login");
  
         }
+        public ActionResult bannedusermessage()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Tbl_User model1,String returnUrl)
+        public ActionResult Login(Tbl_User model1, String returnUrl)
         {
-
-            Tbl_User obj1 = ctx.Tbl_User.Where(x => x.Username.Equals(model1.Username) && x.password.Equals(model1.password)).FirstOrDefault();
-            if (obj1 != null)
+            Tbl_User obj = ctx.Tbl_User.Where(x => x.Username.Equals(model1.Username) && x.password.Equals(model1.password) && x.status == false).FirstOrDefault();
+            if (obj == null)
             {
-                FormsAuthentication.SetAuthCookie(obj1.Username, false);
-                //if (Url.IsLocalUrl(returnUrl)&&returnUrl.Length>1&&returnUrl.StartsWith("/")&& !returnUrl.StartsWith("//")&& !returnUrl.StartsWith("/\\"))
-                if (!string.IsNullOrEmpty(returnUrl))
+                Tbl_User obj1 = ctx.Tbl_User.Where(x => x.Username.Equals(model1.Username) && x.password.Equals(model1.password)).FirstOrDefault();
+                if (obj1 != null)
                 {
-                    return Redirect(returnUrl);
+                    FormsAuthentication.SetAuthCookie(obj1.Username, false);
+                    //if (Url.IsLocalUrl(returnUrl)&&returnUrl.Length>1&&returnUrl.StartsWith("/")&& !returnUrl.StartsWith("//")&& !returnUrl.StartsWith("/\\"))
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    ViewBag.error = "Invalid username or password.";
+                    return View();
                 }
             }
             else
             {
-                ViewBag.error = "Invalid username or password.";
-                return View();
+                return RedirectToAction("bannedusermessage", "Home");
             }
+
 
         }
         public ActionResult renderservices()
@@ -413,8 +426,9 @@ namespace OnlineHomeServices.Controllers
             obj.Long = obj1.Long;
             obj.Lat = obj1.Lat;
             obj.Phone_number = obj1.Phone_number;
-            obj.orderprice = obj1.orderprice;
+            obj.orderprice = obj1.CounterOfferPrice;
             obj.Date = obj1.Date;
+            obj.Paymentstatus = obj1.Paymentstatus;
 
 
 

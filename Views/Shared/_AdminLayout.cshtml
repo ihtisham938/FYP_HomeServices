@@ -53,7 +53,8 @@
                     <i class="fas fa-user-circle fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="@Url.Action("profile","Admin")">Profile</a>
+                    <a class="dropdown-item" href="@Url.Action("combinedprofile","Home")">Profile</a>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" @Html.ActionLink("Logout", "Logout", "Home")></a>
                 </div>
@@ -67,16 +68,11 @@
             {
 
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Categories","Admin")">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Category</span>
-                    </a>
-                </li>
+              
                 <li class="nav-item active">
                     <a class="nav-link" href="@Url.Action("Adminpro","Admindata")">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>Un Baned users</span>
+                        <span>Active users</span>
                     </a>
                 </li>
                 <li class="nav-item active">
@@ -129,6 +125,12 @@
                     <a class="nav-link" href=" @Url.Action("OrdercompleteAdmin", "Admin")">
                         <i class="fas fa-fw fa-check"></i>
                         <span>Complete Orders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=" @Url.Action("Index", "Home")">
+                        <i class="fas fa-fw fa-home"></i>
+                        <span>Back to home</span>
                     </a>
                 </li>
             }

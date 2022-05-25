@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9c6b8e3431b74713b6d79ab4c485346d" Name="Diagram1" ZoomLevel="71">
+      <Diagram DiagramId="9c6b8e3431b74713b6d79ab4c485346d" Name="Diagram1" ZoomLevel="10">
         <EntityTypeShape EntityType="dbOnlineHomeServicesModel.Tbl_Cart" Width="1.5" PointX="5.25" PointY="2" />
         <EntityTypeShape EntityType="dbOnlineHomeServicesModel.Tbl_CartStatus" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="dbOnlineHomeServicesModel.Tbl_Category" Width="1.5" PointX="0.75" PointY="2" />
@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="dbOnlineHomeServicesModel.Tbl_User" Width="1.5" PointX="0.75" PointY="6" />
         <AssociationConnector Association="dbOnlineHomeServicesModel.FK__Tbl_Cart__Servic__38996AB5" />
         <AssociationConnector Association="dbOnlineHomeServicesModel.FK__Tbl_Servi__Categ__398D8EEE" />
-        <AssociationConnector Association="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3A81B327" />
+        <AssociationConnector Association="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3F466844" />
         <AssociationConnector Association="dbOnlineHomeServicesModel.FK_Tbl_Roles_Tbl_User" />
       </Diagram>
     </edmx:Diagrams>

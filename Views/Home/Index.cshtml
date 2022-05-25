@@ -73,17 +73,20 @@
             <h5>@item.ProductName</h5>
             <p>Rs. @item.Price</p>
             <p>
-
-                @if (item.IsActive == true)
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="pull-right" href=" @Url.Action("SendRequest", "Home", new { serviceId = item.ServiceId }, null) "><i class="fa fa-send"></i></a>
 
+                    if (item.IsActive == true)
+                    {
+                        <a class="pull-right" href=" @Url.Action("SendRequest", "Home", new { serviceId = item.ServiceId }, null) "><i class="fa fa-send"></i></a>
+
+                    }
                 }
 
 
-                @if (item.IsActive == true)
-                {
-                <p>Available</p>
+                    @if (item.IsActive == true)
+                    {
+<p>Available</p>
             }
             else
             {
@@ -98,9 +101,8 @@
     {
         <p>Old</p>}
                 </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-        <a href="@Url.Action("ServiceDetails", new { @item.ServiceId })" class="btn btn-warning center-block">Detail</a>}
+              
+        <a href="@Url.Action("ServiceDetails", new { @item.ServiceId })" class="btn btn-warning center-block">Detail</a>
             </div>
     </div>
 </div>}

@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Shipp__Membe__3A81B327">
+        <Association Name="FK__Tbl_Shipp__Membe__3F466844">
           <End Role="Tbl_Members" Type="Self.Tbl_Members" Multiplicity="0..1" />
           <End Role="Tbl_ShippingDetails" Type="Self.Tbl_ShippingDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +204,7 @@
             <End Role="Tbl_Category" EntitySet="Tbl_Category" />
             <End Role="Tbl_Service" EntitySet="Tbl_Service" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Shipp__Membe__3A81B327" Association="Self.FK__Tbl_Shipp__Membe__3A81B327">
+          <AssociationSet Name="FK__Tbl_Shipp__Membe__3F466844" Association="Self.FK__Tbl_Shipp__Membe__3F466844">
             <End Role="Tbl_Members" EntitySet="Tbl_Members" />
             <End Role="Tbl_ShippingDetails" EntitySet="Tbl_ShippingDetails" />
           </AssociationSet>
@@ -237,7 +237,7 @@
             <End Role="Tbl_Category" EntitySet="Tbl_Category" />
             <End Role="Tbl_Service" EntitySet="Tbl_Service" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Shipp__Membe__3A81B327" Association="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3A81B327">
+          <AssociationSet Name="FK__Tbl_Shipp__Membe__3F466844" Association="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3F466844">
             <End Role="Tbl_Members" EntitySet="Tbl_Members" />
             <End Role="Tbl_ShippingDetails" EntitySet="Tbl_ShippingDetails" />
           </AssociationSet>
@@ -286,7 +286,7 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Tbl_ShippingDetails" Relationship="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3A81B327" FromRole="Tbl_Members" ToRole="Tbl_ShippingDetails" />
+          <NavigationProperty Name="Tbl_ShippingDetails" Relationship="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3F466844" FromRole="Tbl_Members" ToRole="Tbl_ShippingDetails" />
         </EntityType>
         <EntityType Name="Tbl_Orders">
           <Key>
@@ -362,7 +362,7 @@
           <Property Name="OrderId" Type="Int32" />
           <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Tbl_Members" Relationship="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3A81B327" FromRole="Tbl_ShippingDetails" ToRole="Tbl_Members" />
+          <NavigationProperty Name="Tbl_Members" Relationship="dbOnlineHomeServicesModel.FK__Tbl_Shipp__Membe__3F466844" FromRole="Tbl_ShippingDetails" ToRole="Tbl_Members" />
         </EntityType>
         <EntityType Name="Tbl_SlideImage">
           <Key>
@@ -409,7 +409,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Shipp__Membe__3A81B327">
+        <Association Name="FK__Tbl_Shipp__Membe__3F466844">
           <End Type="dbOnlineHomeServicesModel.Tbl_Members" Role="Tbl_Members" Multiplicity="0..1" />
           <End Type="dbOnlineHomeServicesModel.Tbl_ShippingDetails" Role="Tbl_ShippingDetails" Multiplicity="*" />
           <ReferentialConstraint>

@@ -52,7 +52,7 @@ body {
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 
@@ -118,15 +118,19 @@ body {
 }
 .Actionbtn{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
 }
 .Actionbtn a{
     position:relative;
     }
     .card__apply {
         grid-row: 5/6;
-        justify-content: space-between;
+        justify-content: space-around;
     }
+.card__apply a {
+    padding-top:3em;
+}
+
 
 
 /* CARD BACKGROUNDS */

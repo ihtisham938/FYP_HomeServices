@@ -16,6 +16,7 @@
         int totalCompleteorder = 0;
         int AcceptedOrder = 0;
         int revinew = 0;
+        int deny=0;
         foreach (var item in Model)
         {
 
@@ -32,9 +33,14 @@
                     }
 
                 }
-                if (item.Status == "Accepted")
+                if (item.Status == "Accepted"|| item.Status == "counterAccepted")
                 {
                     AcceptedOrder += 1;
+
+                }
+                if (item.Status == "Denied" || item.Status == "counterDeny")
+                {
+                    deny += 1;
 
                 }
 
@@ -43,39 +49,49 @@
         }
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card-counter primary">
-                    <i class="fa fa-code-fork"></i>
-                    <span class="count-numbers">@totalorder</span>
-                    <span class="count-name">Total Orders</span>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-counter primary">
+                        <i class="fa fa-user"></i>
+                        <span class="count-numbers">@totalorder</span>
+                        <span class="count-name">Total Orders</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="card-counter danger">
-                    <i class="fa fa-ticket"></i>
-                    <span class="count-numbers">@AcceptedOrder</span>
-                    <span class="count-name">Accepted Orders</span>
+                <div class="col-md-3">
+                    <div class="card-counter danger">
+                        <i class="fa fa-ticket"></i>
+                        <span class="count-numbers">@AcceptedOrder</span>
+                        <span class="count-name">Orders in progress</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="card-counter success">
-                    <i class="fa fa-database"></i>
-                    <span class="count-numbers">@totalCompleteorder</span>
-                    <span class="count-name">Completed Order</span>
+                <div class="col-md-3">
+                    <div class="card-counter success">
+                        <i class="fa fa-database"></i>
+                        <span class="count-numbers">@totalCompleteorder</span>
+                        <span class="count-name">Completed Order</span>
+                    </div>
                 </div>
-            </div>
+                <div class="col-md-3">
+                    <div class="card-counter info">
+                        <i class="fa fa-stop"></i>
+                        <span class="count-numbers">@deny</span>
+                        <span class="count-name">Canceled orders</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-counter info">
+                        <i class="fa fa-money-bill"></i>
+                        <span class="count-numbers">@revinew</span>
+                        <span class="count-name">Total Revenue</span>
+                    </div>
+                </div>
 
-            <div class="col-md-3">
-                <div class="card-counter info">
-                    <i class="fa fa-users"></i>
-                    <span class="count-numbers">@revinew</span>
-                    <span class="count-name">Total Revenue</span>
-                </div>
+
+              
+                
             </div>
-        </div>
     </div>
         }
 </tbody>

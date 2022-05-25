@@ -40,12 +40,18 @@
                         <a href="@Url.Action("makepayment", "Home", new { id = Html.ViewData.Model.id })" class="btn card__link btn-white btn-        animate">Submit payment</a>
                     </div>
                 }
-                else
+                else if(Html.ViewData.Model.Paymentstatus.Equals("Submited  "))
                 {
                     <p class="card__apply">
-                        <h5 class="card__desc" style="color:white; font-weight:500;">Paid<i class="fa-dot-circle"></i></h5>
+                        <h5 class="card__desc" style="color:white; font-weight:500;">Waiting for verification<i class="fa-dot-circle"></i></h5>
                     </p>
                 }
+            else
+            {
+            <p class="card__apply">
+                <h5 class="card__desc" style="color:white; font-weight:500;">Payment varified<i class="fa-dot-circle"></i></h5>
+            </p>
+            }
 
             </div>
         

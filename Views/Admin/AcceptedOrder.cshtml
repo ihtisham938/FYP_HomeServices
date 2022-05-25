@@ -79,7 +79,7 @@
             foreach (var item in Model)
             {
 
-                if (item.SellerName == User.Identity.Name && item.Status == "Approved")
+                if (item.SellerName == User.Identity.Name && (item.Status == "Approved" || item.Status == "counterAccepted"))
                 {
                     i += 1;
                 }
@@ -96,7 +96,7 @@
     {
 
 
-        if (item.SellerName == User.Identity.Name && item.Status == "Approved")
+        if (item.SellerName == User.Identity.Name && (item.Status == "Approved" || item.Status == "counterAccepted"))
         {
             <div class="cards">
 

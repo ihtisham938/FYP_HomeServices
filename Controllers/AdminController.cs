@@ -107,6 +107,7 @@ namespace OnlineHomeServices.Controllers
         public ActionResult CounterOffer(Tbl_Orders tbl, HttpPostedFileBase file)
         {
             tbl.Status = "counterPending";
+            tbl.Paymentstatus = "Pending";
             
             _unitOfWork.GetRepositoryInstance<Tbl_Orders>().Update(tbl);
             return RedirectToAction("ShowRequest");
