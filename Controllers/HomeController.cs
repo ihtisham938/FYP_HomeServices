@@ -124,8 +124,14 @@ namespace OnlineHomeServices.Controllers
             Session["cart"] = cart;
             return Redirect("Index");
         }
-        
-        [Authorize (Roles ="Seller")]
+        public ActionResult sellerreviews(string name)
+        {
+            var q = ctx.Tbl_review.Where(x => x.reviewname == name).ToList();
+            return View(q);
+
+            //return View(_unitOfWork.GetRepositoryInstance<Tbl_Category>().GetFirstorDefault(serviceId));
+        }
+
         public ActionResult ServiceDetails(int serviceId)
         {
             var q = ctx.Tbl_Service.FirstOrDefault(m => m.ServiceId == serviceId);

@@ -34,14 +34,17 @@
                         <div class="card-block">
 
                             <div class="row text-center">
-                                <hr/>
+                                <hr />
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Email</p>
                                     <h6 class="text-muted f-w-400">@Model.Email</h6>
                                 </div>
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Location</p>
-                                    <h6 class="text-muted f-w-400">@Model.location</h6 >
+                                    <h6 class="text-muted f-w-400">@Model.location</h6>
+                                </div>
+                                <div class="text-center">
+                                    <a href="@Url.Action("sellerreviews", new { name = Model.Username })" type="button" class="btn btn-info ">Reviews</a>
                                 </div>
 
                             </div>

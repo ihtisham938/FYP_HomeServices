@@ -1,0 +1,94 @@
+﻿@model IEnumerable<OnlineHomeServices.DAL.Tbl_review>
+
+@{
+    ViewBag.Title = "sellerreviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/9e5844b079.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2 class="text-center">Reviews</h2>
+
+@{ 
+        int star = 0;
+        int count = 0;
+        int avg = 0;
+        foreach (var item in Model)
+        {
+            star += (int)item.rating;
+            count += 1;
+
+
+        }
+        avg = star / count;
+    <section class="text-center">
+        <h1>@avg <i style="color:orange" class="fas fa-star"></i></h1>
+
+    </section>
+
+    }
+    
+    @foreach (var item in Model)
+        {
+            var defaultstar = 5 - item.rating;
+
+            <div class="card card-outline-secondary my-4">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p class="text-secondary text-center">@item.date</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>
+                                    <a class="float-left"><strong>@item.reviwername</strong></a>
+                                    <span class="text-warning float-right">
+
+                                        @for (int i = 1; i <= item.rating; i++)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        @for (int i = 1; i <= defaultstar; i++)
+                                        {
+                                            <i class="far fa-star"></i>
+
+                                        }
+
+                                    </span>
+
+
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>@item.Review</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        }
+
+    </body>
+</html>

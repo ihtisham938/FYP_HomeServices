@@ -1871,6 +1871,7 @@
     <Content Include="Views\Home\bannedusermessage.cshtml" />
     <Content Include="Views\Admindata\userbase.cshtml" />
     <Content Include="Views\Home\sellerdetails.cshtml" />
+    <Content Include="Views\Home\sellerreviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

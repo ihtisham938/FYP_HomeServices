@@ -32,12 +32,14 @@
                         <p class="product-description">@Model.Description</p>
                         <h4 class="price">current price: <span>@Model.Price</span></h4>
                         <p class="vote"><strong>Service providers</strong> Providing Quality services in your home town <strong></strong></p>
-
-                        <div class="action">
-                            <a href="@Url.Action("SendRequest",new { Model.ServiceId})" class="add-to-cart btn btn-default">Send request</a>
-                            <a href="@Url.Action("sellerdetails", new { name=Model.Username })" class="like btn btn-default" type="button"><span class="fa fa-user"></span></a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="action">
+                                <a href="@Url.Action("SendRequest", new { Model.ServiceId })" class="add-to-cart btn btn-default">Send request</a>
+                                <a href="@Url.Action("sellerdetails", new { name = Model.Username })" class="like btn btn-default" type="button"><span class="fa fa-user"></span></a>
+                            </div>
+                        }
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
