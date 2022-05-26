@@ -18,6 +18,12 @@ namespace OnlineHomeServices.Controllers
         {
             return View(_unitOfWork.GetRepositoryInstance<Tbl_User>().GetAllRecords());
         }
+
+
+        public ActionResult userbase()
+        {
+            return View(_unitOfWork.GetRepositoryInstance<Tbl_User>().GetAllRecords());
+        }
         public ActionResult Userdelete(int id)
         {
 

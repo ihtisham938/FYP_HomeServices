@@ -16,22 +16,28 @@
         margin-bottom: 1.5em;
     }
 </style>
-@using (Html.BeginForm("addSignup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Signup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="container">
 
         <div class="row">
             <div class="col-md-6">
+                @if (TempData["msg"] != null)
+                {
 
+
+                    <h3 style="color:red"><strong>@TempData["msg"]</strong></h3>
+                }
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @using (Html.BeginForm("addSignup", "Home", FormMethod.Post))
                 {
                     <div class="container">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="from-group">
                             <label>Email address</label>
                             @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
-                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", style = "width:400px;" })
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", style = "width:300px;" })
                         </div>
 
                     </div>
@@ -40,21 +46,21 @@
                         <div class="from-group">
                             <label>Location</label>
                             @Html.ValidationMessageFor(x => x.location, "", new { @class = "text-danger" })
-                            @Html.TextBoxFor(x => x.location, new { @class = "form-control", style = "width:400px;" })
+                            @Html.TextBoxFor(x => x.location, new { @class = "form-control", style = "width:300px;" })
                         </div>
                     </div>
                     <div class="container">
                         <div class="from-group">
                             <label>Username</label>
                             @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
-                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", style = "width:400px;" })
+                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", style = "width:300px;" })
                         </div>
                     </div>
                     <div class="container">
                         <div class="form-group">
                             <label>Password</label>
                             @Html.ValidationMessageFor(x => x.password, "", new { @class = "text-danger" })
-                            @Html.PasswordFor(x => x.password, new { @class = "form-control", style = "width:400px;" })
+                            @Html.PasswordFor(x => x.password, new { @class = "form-control", style = "width:300px;" })
 
                         </div>
                     </div>

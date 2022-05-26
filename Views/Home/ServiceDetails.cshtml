@@ -27,7 +27,7 @@
                     </div>
                     <div class="details col-md-6">
                         <h3 class="product-title">@Model.ProductName</h3>
-
+                        <h3>Seller name:@Model.Username </h3>
                         <h2>Description: </h2>
                         <p class="product-description">@Model.Description</p>
                         <h4 class="price">current price: <span>@Model.Price</span></h4>
@@ -35,7 +35,7 @@
 
                         <div class="action">
                             <a href="@Url.Action("SendRequest",new { Model.ServiceId})" class="add-to-cart btn btn-default">Send request</a>
-                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            <a href="@Url.Action("sellerdetails", new { name=Model.Username })" class="like btn btn-default" type="button"><span class="fa fa-user"></span></a>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,8 @@ namespace OnlineHomeServices.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,21 @@ namespace OnlineHomeServices.DAL
         }
     
         public int id { get; set; }
+
+       [Required(ErrorMessage = "Please Email address")]
         public string Email { get; set; }
+
+
+       [Required(ErrorMessage = "Please Enter username")]
         public string Username { get; set; }
+
+       [Required(ErrorMessage = "Please enter password")]
         public string password { get; set; }
+
+        [Required(ErrorMessage = "Please enter location")]
         public string location { get; set; }
+
+       
         public string Profilepic { get; set; }
         public Nullable<bool> status { get; set; }
     

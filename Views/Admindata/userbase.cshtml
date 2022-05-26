@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OnlineHomeServices.DAL.Tbl_User>
+
+@{
+    ViewBag.Title = "userbase";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="dashboard.css" />
+<tbody>
+    <h2 class="col-md-4">Userbase</h2>
+
+    @{
+        int totaluser = 0;
+        int activeusers = 0;
+        int blockedusers = 0;
+
+        foreach (var item in Model)
+        {
+
+
+            totaluser += 1;
+
+
+
+
+            if (item.status == true)
+            {
+                activeusers += 1;
+
+            }
+            if (item.status == false)
+            {
+                blockedusers += 1;
+
+            }
+
+
+
+        }
+        totaluser -= 1;
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-counter primary">
+                        <i class="fa fa-user"></i>
+                        <span class="count-numbers">@totaluser</span>
+                        <span class="count-name">Total Registered Users</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card-counter danger">
+                        <i class="fa fa-ticket"></i>
+                        <span class="count-numbers">@activeusers</span>
+                        <span class="count-name">Active Users</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card-counter success">
+                        <i class="fa fa-database"></i>
+                        <span class="count-numbers">@blockedusers</span>
+                        <span class="count-name">Blocked User</span>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    }
+</tbody>

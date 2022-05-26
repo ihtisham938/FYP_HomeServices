@@ -11,7 +11,8 @@ namespace OnlineHomeServices.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,10 @@ namespace OnlineHomeServices.DAL
         {
             this.Tbl_Cart = new HashSet<Tbl_Cart>();
         }
-    
+        
         public int ServiceId { get; set; }
+
+       
         public string ProductName { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public Nullable<bool> IsActive { get; set; }

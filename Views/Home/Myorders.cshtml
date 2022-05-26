@@ -6,6 +6,13 @@
 }
 
 <h2>My orders</h2>
+@if (TempData["msg"] != null)
+{
+
+
+    <h3 style="color:green"><strong>@TempData["msg"]</strong></h3>
+}
+
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-table"></i>
@@ -33,18 +40,19 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        if (item.CustomerName == User.Identity.Name && item.Status=="Pending") {
+                        if (item.CustomerName == User.Identity.Name && item.Status == "Pending")
+                        {
                             int count = 1;
-                        <tr>
-                            <td>@count</td>
-                            <td>@item.SellerName</td>
-                            <td>@item.Status</td>
-                            <td>
-                                <a href="@Url.Action("DeleteOrder",new { @item.id})" class="btn btn-danger">Delete</a>
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.SellerName</td>
+                                <td>@item.Status</td>
+                                <td>
+                                    <a href="@Url.Action("DeleteOrder",new { @item.id})" class="btn btn-danger">Delete</a>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
                             count++;
                         }
 

@@ -66,6 +66,7 @@
     <div class="heading">
         <h1 class="heading__title">Pending orders</h1>
         <p class="credit">You have these pending offers</p>
+
         @{
             int i = 0;
 
@@ -87,7 +88,12 @@
         }
     </div>
 
+    @if (TempData["msg"] != null)
+    {
 
+
+        <h3 style="color:green"><strong>@TempData["msg"]</strong></h3>
+    }
 
 
     @foreach (var item in Model)

@@ -26,7 +26,12 @@
     <form asp-route-returnurl="@returnUrl" method="post">
         @Html.AntiForgeryToken()
 
+        @if (TempData["msg"] != null)
+        {
 
+          
+            <h3 style="color:green"><strong>@TempData["msg"]</strong></h3>
+        }
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container">
             <p class=" error">@ViewBag.error</p>
@@ -39,7 +44,7 @@
                             <label>Username</label>
                             <div class=" input-group">
                                 <span class="input-group-addon"><i class=" glyphicon glyphicon-user"></i></span>
-                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", style = "width:400px;" })
+                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", style = "width:200px;" })
                                 @Html.ValidationMessageFor(x => x.Username)
                             </div>
                         </div>
@@ -52,7 +57,7 @@
                             <label>Password</label>
                             <div class=" input-group">
                                 <span class=" input-group-addon"><i class=" glyphicon glyphicon-lock"></i></span>
-                                @Html.PasswordFor(x => x.password, new { @class = "form-control", style = "width:400px;" })
+                                @Html.PasswordFor(x => x.password, new { @class = "form-control", style = "width:200px;" })
                                 @Html.ValidationMessageFor(x => x.password)
                             </div>
 
@@ -62,7 +67,7 @@
                         </div>
                     </div>
                     <div class="float-right">
-                        <input type="button" class="btn btn-dark" value="Admin mode" onclick="location.href='@Url.Action("banedUsers", "Admindata")'" />
+                        <input type="button" class="btn btn-dark" value="Admin mode" onclick="location.href='@Url.Action("userbase", "Admindata")'" />
                     </div>
                     <div style="margin-top:1em">
                         @Html.ActionLink("Do not have accout?", "Signup")

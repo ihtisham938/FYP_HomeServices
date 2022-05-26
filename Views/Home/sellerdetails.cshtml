@@ -1,0 +1,57 @@
+﻿@model OnlineHomeServices.DAL.Tbl_User
+<link href="~/AdminStyle/css/Profile.css" rel="stylesheet" />
+
+
+
+    @{
+        ViewBag.Title = "sellerdetails";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+
+
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="card p-3 py-4">
+                    <div class="text-center">
+                        <img src="~/ProfileImages/@Model.Profilepic" width=" 100" class="rounded-circle" style="border-radius:100%">
+                    </div>
+                    <div class="text-center mt-3">
+                        <span class="bg-secondary p-1 px-4 rounded text-white">
+                            @Model.Username
+                        </span>
+
+                        <h5 class="mt-2 mb-0">Service provider</h5>
+                    </div>
+                    <hr />
+
+                    <h3 class="text-center">    Personal information</h3>
+                    <hr>
+                    <div>
+
+                        <div class="card-block">
+
+                            <div class="row text-center">
+                                <hr/>
+                                <div class="col-sm-6">
+                                    <p class="m-b-10 f-w-600">Email</p>
+                                    <h6 class="text-muted f-w-400">@Model.Email</h6>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="m-b-10 f-w-600">Location</p>
+                                    <h6 class="text-muted f-w-400">@Model.location</h6 >
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+

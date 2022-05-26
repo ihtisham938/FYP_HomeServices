@@ -1692,6 +1692,7 @@
     <Content Include="Images\code1.PNG" />
     <Content Include="Images\icons8-search-50.png" />
     <Content Include="Images\Logo-removebg-preview.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\S1.jpg" />
     <Content Include="Images\searchIcon.png" />
     <Content Include="Images\WhatsApp Image 2021-12-08 at 12.48.00.jpeg" />
@@ -1868,6 +1869,8 @@
     <Content Include="Views\Home\Customerpayment.cshtml" />
     <Content Include="Views\Admin\paymentseller.cshtml" />
     <Content Include="Views\Home\bannedusermessage.cshtml" />
+    <Content Include="Views\Admindata\userbase.cshtml" />
+    <Content Include="Views\Home\sellerdetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

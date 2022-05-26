@@ -138,31 +138,43 @@ namespace OnlineHomeServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult addSignup(Tbl_User model, HttpPostedFileBase file, FormCollection objfrm)
+        public ActionResult Signup(Tbl_User model, HttpPostedFileBase file, FormCollection objfrm)
         {
-
-            Tbl_User obj1 = new Tbl_User();
-            string pic = null;
-            if (file != null)
-            {
-                pic = System.IO.Path.GetFileName(file.FileName);
-                string path = System.IO.Path.Combine(Server.MapPath("~/ProfileImages/"), pic);
-                // file is uploaded
-                file.SaveAs(path);
-            }
-            obj1.Email = model.Email;
-            obj1.Username = model.Username;
-            obj1.password = model.password;
-            obj1.location = model.location;
-            obj1.status = true;
-            
-            model.Profilepic = file != null ? pic : model.Profilepic;
-            obj1.Profilepic = model.Profilepic;
-            
-            ctx.Tbl_User.Add(obj1);
-            ctx.SaveChanges();
            
-            return RedirectToAction("Login");
+            if (ModelState.IsValid)
+            {
+                Tbl_User obj1 = new Tbl_User();
+                string pic = null;
+                if (file != null)
+                {
+                    pic = System.IO.Path.GetFileName(file.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/ProfileImages/"), pic);
+                    // file is uploaded
+                    file.SaveAs(path);
+                }
+                obj1.Email = model.Email;
+                obj1.Username = model.Username;
+                obj1.password = model.password;
+                obj1.location = model.location;
+                obj1.status = true;
+
+                model.Profilepic = file != null ? pic : model.Profilepic;
+                obj1.Profilepic = model.Profilepic;
+
+                ctx.Tbl_User.Add(obj1);
+                TempData["Msg"] = "Signup successfull";
+                ctx.SaveChanges();
+
+                return RedirectToAction("Login");
+
+            }
+            else
+            {
+
+                TempData["Msg"] = "All fields required";
+                return RedirectToAction("Signup");
+            }
+            
 
         }
         public ActionResult SelectRole()
@@ -234,6 +246,7 @@ namespace OnlineHomeServices.Controllers
         }
         public ActionResult sendRequest()
         {
+
             return View();
         }
         [HttpPost]
@@ -266,6 +279,7 @@ namespace OnlineHomeServices.Controllers
             tbl.Long = order.Long;
             tbl.orderprice = price;
 
+            TempData["Msg"] = "Request successful";
             ctx.Tbl_Orders.Add(tbl);
             ctx.SaveChanges();
             return View();
@@ -287,6 +301,7 @@ namespace OnlineHomeServices.Controllers
             var res = ctx.Tbl_Orders.Where(x => x.id == id).First();
             ctx.Tbl_Orders.Remove(res);
             ctx.SaveChanges();
+            TempData["Msg"] = "Order deleted";
             return RedirectToAction("Myorders");
         }
         public ActionResult Loc()
@@ -311,6 +326,8 @@ namespace OnlineHomeServices.Controllers
             Tbl_Orders obj = _unitOfWork.GetRepositoryInstance<Tbl_Orders>().GetFirstorDefault(id);
             obj.Status = "Denied";
             _unitOfWork.GetRepositoryInstance<Tbl_Orders>().Update(obj);
+            TempData["Msg"] = "Order canceled";
+
             return RedirectToAction("CustomerOrder");
 
         }
@@ -490,6 +507,14 @@ namespace OnlineHomeServices.Controllers
         public ActionResult Customerpayment(int id)
         {
             return View(_unitOfWork.GetRepositoryInstance<Tbl_Orders>().GetFirstorDefault(id));
+        }
+
+        public ActionResult sellerdetails(String name)
+        {
+            //return View(_unitOfWork.GetRepositoryInstance<Tbl_User>().GetAllRecords().Where(x=>x.Username==name).ToList());
+            return View(ctx.Tbl_User.Where(x=>x.Username.Equals(name)).First());  
+
+
         }
 
         public ActionResult makepayment(int id)
