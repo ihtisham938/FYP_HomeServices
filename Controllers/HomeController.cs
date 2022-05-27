@@ -146,38 +146,46 @@ namespace OnlineHomeServices.Controllers
         [HttpPost]
         public ActionResult Signup(Tbl_User model, HttpPostedFileBase file, FormCollection objfrm)
         {
-           
-            if (ModelState.IsValid)
+            Tbl_User obj = ctx.Tbl_User.Where(x => x.Username.Equals(model.Username) ).FirstOrDefault();
+            if (obj == null)
             {
-                Tbl_User obj1 = new Tbl_User();
-                string pic = null;
-                if (file != null)
+                if (ModelState.IsValid)
                 {
-                    pic = System.IO.Path.GetFileName(file.FileName);
-                    string path = System.IO.Path.Combine(Server.MapPath("~/ProfileImages/"), pic);
-                    // file is uploaded
-                    file.SaveAs(path);
+                    Tbl_User obj1 = new Tbl_User();
+                    string pic = null;
+                    if (file != null)
+                    {
+                        pic = System.IO.Path.GetFileName(file.FileName);
+                        string path = System.IO.Path.Combine(Server.MapPath("~/ProfileImages/"), pic);
+                        // file is uploaded
+                        file.SaveAs(path);
+                    }
+                    obj1.Email = model.Email;
+                    obj1.Username = model.Username;
+                    obj1.password = model.password;
+                    obj1.location = model.location;
+                    obj1.status = true;
+
+                    model.Profilepic = file != null ? pic : model.Profilepic;
+                    obj1.Profilepic = model.Profilepic;
+
+                    ctx.Tbl_User.Add(obj1);
+                    TempData["Msg"] = "Signup successfull";
+                    ctx.SaveChanges();
+
+                    return RedirectToAction("Login");
+
                 }
-                obj1.Email = model.Email;
-                obj1.Username = model.Username;
-                obj1.password = model.password;
-                obj1.location = model.location;
-                obj1.status = true;
+                else
+                {
 
-                model.Profilepic = file != null ? pic : model.Profilepic;
-                obj1.Profilepic = model.Profilepic;
-
-                ctx.Tbl_User.Add(obj1);
-                TempData["Msg"] = "Signup successfull";
-                ctx.SaveChanges();
-
-                return RedirectToAction("Login");
-
+                    TempData["Msg"] = "All fields required";
+                    return RedirectToAction("Signup");
+                }
             }
             else
             {
-
-                TempData["Msg"] = "All fields required";
+                TempData["Msg"] = "Username already exist";
                 return RedirectToAction("Signup");
             }
             

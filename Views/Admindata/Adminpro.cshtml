@@ -22,7 +22,7 @@
                         <tr>
                             <th>Sr. No.</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <th>Location</th>
                             <th class=" text-center">Action</th>
 
                         </tr>
@@ -31,25 +31,27 @@
                         <tr>
                             <th>Sr. No.</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <th>Location</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-
+                      
                         @foreach (var item in Model)
                         {
                             if (item.status == true)
                             {
 
-
                                 int count = 1;
+
                                 <tr>
                                     <td>@count</td>
                                     <td>@item.Username</td>
-                                    <td>@item.password</td>
+                                    <td>@item.Email</td>
                                     <td class="text-center">
                                         <a href="@Url.Action("Ban", new { @item.id })" class="btn btn-danger">Ban</a>
+                                        <a href="@Url.Action("sellerreviews","Home", new { name = item.location})" type="button" class="btn btn-info ">Reviews</a>
+
                                     </td>
                                 </tr>
                                 count++;

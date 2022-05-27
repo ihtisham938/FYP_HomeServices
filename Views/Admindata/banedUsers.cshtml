@@ -21,7 +21,7 @@
                         <tr>
                             <th>Sr. No.</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <th>Location</th>
                             <th class=" text-center">Action</th>
 
                         </tr>
@@ -30,7 +30,7 @@
                         <tr>
                             <th>Sr. No.</th>
                             <th>Username</th>
-                            <th>Password</th>
+                            <th>Location</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -46,9 +46,11 @@
                                 <tr>
                                     <td>@count</td>
                                     <td>@item.Username</td>
-                                    <td>@item.password</td>
+                                    <td>@item.location</td>
                                     <td class="text-center">
                                         <a href="@Url.Action("Unban", new { @item.id })" class="btn btn-danger">UnBan</a>
+                                        <a href="@Url.Action("sellerreviews","Home", new { name = item.location})" type="button" class="btn btn-info ">Reviews</a>
+
 
                                     </td>
                                 </tr>
